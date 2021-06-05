@@ -43,7 +43,7 @@ const Edit = () => {
     const body = JSON.stringify(obj);
     fetch(`${API_ENDPOINT}/memo/edit`, {method, headers, body})
       .then((res) => {
-        if (res.ok) history.push('/memo');
+        if (res.ok) history.push('/');
       })
   }
 
@@ -53,7 +53,7 @@ const Edit = () => {
         <input type="text" name="text" defaultValue={memoData.text} onChange={e => setText(e.target.value)} />
         <button onClick={handleEdit}>更新</button>
       </EditText>
-      <Link to="/memo">Back</Link>
+      <Link to="/">Back</Link>
     </div>
   );
 }

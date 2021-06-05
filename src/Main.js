@@ -57,11 +57,11 @@ const Main = () => {
   }
 
   const handleEdit = id => {
-    history.push(`/memo/edit?id=${id}`)
+    history.push(`/edit?id=${id}`)
   }
 
   const handleDelete = id => {
-    history.push(`/memo/delete?id=${id}`)
+    history.push(`/delete?id=${id}`)
   }
 
   const handleCreateNew = () => {

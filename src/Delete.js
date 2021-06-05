@@ -36,7 +36,7 @@ const Delete = () => {
     const body = JSON.stringify(obj);
     fetch(`${API_ENDPOINT}/memo/delete`, {method, headers, body})
       .then((res) => {
-        if (res.ok) history.push('/memo');
+        if (res.ok) history.push('/');
       })
   }
 
@@ -47,7 +47,7 @@ const Delete = () => {
       <DeleteText>
         <button onClick={handleDelete}>削除</button>
       </DeleteText>
-      <Link to="/memo">Back</Link>
+      <Link to="/">Back</Link>
     </div>
   );
 }

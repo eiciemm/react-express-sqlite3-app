@@ -15,9 +15,9 @@ const App = () => {
       <BrowserRouter>
         <Title>To Do List</Title>
         <div>
-          <Route path="/memo" exact component={Main} />
-          <Route path="/memo/edit" exact component={Edit} />
-          <Route path="/memo/delete" exact component={Delete} />
+          <Route path="/" exact component={Main} />
+          <Route path="/edit" exact component={Edit} />
+          <Route path="/delete" exact component={Delete} />
         </div>
       </BrowserRouter>
     </div>
