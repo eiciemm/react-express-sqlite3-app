@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
@@ -49,7 +51,7 @@ const Main = () => {
 
   const fetchAllMemoData = () => {
     const method = "GET";
-    fetch('/memo', {method, headers})
+    fetch(`${API_ENDPOINT}/memo`, {method, headers})
       .then((res) => res.json())
       .then((data) => setAllMemoData(data.data.content));
   }
@@ -66,7 +68,7 @@ const Main = () => {
     const method = "POST";
     const obj = { text };
     const body = JSON.stringify(obj);
-    fetch('/memo/add', {method, headers, body})
+    fetch(`${API_ENDPOINT}/memo/add`, {method, headers, body})
       .then((res) => {
         if (res.ok) fetchAllMemoData();
       })

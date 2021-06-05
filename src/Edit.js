@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
@@ -29,7 +31,7 @@ const Edit = () => {
     const url = new URL(window.location.href);
     const id = url.searchParams.get('id');
     const method = "GET";
-    fetch(`/memo/edit?id=${id}`, {method, headers})
+    fetch(`${API_ENDPOINT}/memo/edit?id=${id}`, {method, headers})
       .then((res) => res.json())
       .then((data) => setMemoData(data.data.memoData));
   },[])
@@ -39,7 +41,7 @@ const Edit = () => {
     const method = "POST";
     const obj = { id: memoData.id, text: text };
     const body = JSON.stringify(obj);
-    fetch('/memo/edit', {method, headers, body})
+    fetch(`${API_ENDPOINT}/memo/edit`, {method, headers, body})
       .then((res) => {
         if (res.ok) history.push('/memo');
       })
