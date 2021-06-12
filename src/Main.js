@@ -13,13 +13,13 @@ const headers = {
 const CreateNew = styled.div`
   margin: 0 0 22px 8px;
   > input {
-    width: 290px;
+    width: 250px;
     height: 24px;
   }
   > button {
-    width: 90px;
+    width: 80px;
     height: 30px;
-    margin-left: 10px;
+    margin-left: 11px;
   }
 `;
 
@@ -31,10 +31,13 @@ const Loading = styled.div`
 `;
 
 const List = styled.div`
-  width: 400px;
+  width: 325px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 0 8px 8px;
+  padding: 20px 12px;
+  background: yellow;
 `;
 
 const Text = styled.p`
@@ -44,11 +47,18 @@ const Text = styled.p`
 
 const Buttons = styled.div`
   display: flex;
-  > button {
-    margin-left: 8px;
-    height: 30px;
+`;
+
+const Icons = styled.img`
+  margin-left: 12px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  :hover {
+    opacity: 0.6;
   }
 `;
+
 
 const Main = () => {
   const [allMemoData, setAllMemoData] = useState([]);
@@ -79,10 +89,10 @@ const Main = () => {
 
   const applyEdit = () => {
     const method = "PUT";
-    const obj = { id: editTargetId, text: targetText };
+    const obj = { text: targetText };
     const body = JSON.stringify(obj);
     setIsLoading(true);
-    fetch(`${API_ENDPOINT}/memo`, {method, headers, body})
+    fetch(`${API_ENDPOINT}/memo/${editTargetId}`, {method, headers, body})
       .then((res) => {
         if (res.ok) {
           fetchAllMemoData();
@@ -101,10 +111,8 @@ const Main = () => {
   //delete
   const handleDelete = id => {
     const method = "DELETE";
-    const obj = { id: id };
-    const body = JSON.stringify(obj);
     setIsLoading(true);
-    fetch(`${API_ENDPOINT}/memo`, {method, headers, body})
+    fetch(`${API_ENDPOINT}/memo/${id}`, {method, headers})
       .then((res) => {
         if (res.ok) {
           fetchAllMemoData();
@@ -158,8 +166,8 @@ const Main = () => {
                 <Text>{memo.text}</Text>
               )}
               <Buttons>
-                <button onClick={() => handleEdit(memo.id, memo.text)}>編集</button>
-                <button onClick={() => handleDelete(memo.id)}>削除</button>
+                <Icons onClick={() => handleEdit(memo.id, memo.text)} src={`${process.env.PUBLIC_URL}/edit.png`} alt="" />
+                <Icons onClick={() => handleDelete(memo.id)} src={`${process.env.PUBLIC_URL}/delete.png`} alt="" />
               </Buttons>
             </List>
           )

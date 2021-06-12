@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const EditText = styled.div`
   > input {
-    width: 290px;
+    width: 250px;
     height: 24px;
     margin-bottom: 8px;
   }
