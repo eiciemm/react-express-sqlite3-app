@@ -73,7 +73,7 @@ const Main = () => {
 
   const fetchAllMemoData = () => {
     const method = "GET";
-    fetch(`${API_ENDPOINT}/memo`, {method, headers})
+    fetch(`${API_ENDPOINT}/memos`, {method, headers})
       .then((res) => res.json())
       .then((data) => {
         setAllMemoData(data.data.content);
@@ -92,7 +92,7 @@ const Main = () => {
     const obj = { text: targetText };
     const body = JSON.stringify(obj);
     setIsLoading(true);
-    fetch(`${API_ENDPOINT}/memo/${editTargetId}`, {method, headers, body})
+    fetch(`${API_ENDPOINT}/memos/${editTargetId}`, {method, headers, body})
       .then((res) => {
         if (res.ok) {
           fetchAllMemoData();
@@ -112,7 +112,7 @@ const Main = () => {
   const handleDelete = id => {
     const method = "DELETE";
     setIsLoading(true);
-    fetch(`${API_ENDPOINT}/memo/${id}`, {method, headers})
+    fetch(`${API_ENDPOINT}/memos/${id}`, {method, headers})
       .then((res) => {
         if (res.ok) {
           fetchAllMemoData();
@@ -130,7 +130,7 @@ const Main = () => {
     const obj = { text };
     const body = JSON.stringify(obj);
     setIsLoading(true);
-    fetch(`${API_ENDPOINT}/memo`, {method, headers, body})
+    fetch(`${API_ENDPOINT}/memos`, {method, headers, body})
       .then((res) => {
         if (res.ok) {
           fetchAllMemoData();
